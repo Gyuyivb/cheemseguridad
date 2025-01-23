@@ -1,10 +1,13 @@
 import React from "react";
 import { Loading } from "./Loading";
 
+const SECURITY_CODE = 'paradigm';
+
 class ClassState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            value: '',
             error: false,
             loading: false,
         };
@@ -24,7 +27,11 @@ class ClassState extends React.Component{
             setTimeout(() => {
                 console.log('Validandooo validandooo')
     
-                this.setState({ loading: false });
+                if(SECURITY_CODE === this.state.value){
+                    this.setState({ error: false, loading: false });
+                }else{                    
+                    this.setState({ error: true, loading: false });
+                }
     
                 console.log('terminando la validacion')
             }, 3000); 
@@ -34,25 +41,31 @@ class ClassState extends React.Component{
     render() {
         return (
             <div>
-                <h2>ELIMINAR {this.props.name}</h2>
-                <p>Escribe el codiogo de seguridad</p>
+                <h2>DETELE {this.props.name}</h2>
+                <p>Wirte your security code</p>
                 
-                {this.state.error && (
+                {(this.state.error && !this.state.loading) && (
                     <p>
-                        Error: codigo incorrercto
+                        Error: incorrect code
                     </p>
                 )}
                  {this.state.loading && (
                     <Loading>
-                        Cargadoooo...
+                        Loooooading...
                     </Loading>
                 )}
-                <input placeholder="codigo de seguridad"/>
+                <input 
+                    placeholder="security code"
+                    value={this.state.value}
+                    onChange={(event) => {
+                        this.setState({ value: event.target.value });
+                    }}
+                    />
                 <button
                 onClick={() => 
                     this.setState({ loading: true})
                 }
-                >Comprobar</button>
+                >Check</button>
             </div>
         )
     }

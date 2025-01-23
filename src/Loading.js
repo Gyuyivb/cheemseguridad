@@ -4,10 +4,10 @@ class Loading extends React.Component{
     componentWillUnmount() {
         console.log('ComponentWillUnmount');        
     }
-    
+
     render(){
         return (
-            <p>Cargadoooo...</p>
+            <p>Loooooading...</p>
         );
     }
 }
