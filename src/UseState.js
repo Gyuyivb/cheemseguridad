@@ -13,6 +13,48 @@ function UseState({ name }) {
     // const [value, setValue] = React.useState('');
     // const [error, setError] = React.useState(false);
     // const [loading, setLoading] = React.useState(false);
+    const onConfirm = () =>{
+        setState({
+            ...state,
+            error: false,
+            loading: false,
+            confirmed: true,
+        });
+    };
+    const onError = () => {
+        setState({
+            ...state,
+            error: true,
+            loading: false,
+        });
+    };
+    const onWrite = (newValue) => {
+        setState({
+            ...state,
+            value: newValue, 
+        });
+    };
+    const onCheck = () => {
+        setState({
+            ...state,
+            error: false,
+            loading: true,
+        });
+    };
+    const onDelete = () => {
+        setState({
+            ...state,
+            deleted: true,
+        });
+    };
+    const onReset = () => {
+        setState({
+            ...state,
+            value: '',
+            deleted: false,
+            confirmed: false,
+        });
+    };
     console.log(state)
 
     React.useEffect(() =>{
@@ -22,20 +64,10 @@ function UseState({ name }) {
                 console.log('Validandooo validandooo')
     
                 if (state.value === SECURITY_CODE) {
-                    setState({
-                        ...state,
-                        error: false,
-                        loading: false,
-                        confirmed: true,
-                    });
-                    console.log('sadsa: ', state.confirmed)
+                    onConfirm();
                     //setLoading(false);
                 }else{
-                    setState({
-                        ...state,
-                        error: true,
-                        loading: false,
-                    });
+                    onError();
                     // setError(true);
                     // setLoading(false);
                 }
@@ -67,20 +99,13 @@ function UseState({ name }) {
                     placeholder="codigo de seguridad"
                     value={state.value}
                     onChange={(event) => {
+                        onWrite(event.target.value);
                         //setError(false); //no es conveniente porque se actualiza cada que cambia el input
-                        setState({
-                            ...state,
-                            value: event.target.value, 
-                        });
                         // setValue(event.target.value);
                     }}/>
                 <button
                     onClick={() => {
-                        setState({
-                            ...state,
-                            error: false,
-                            loading: true,
-                        });
+                        onCheck();
                         // setLoading(true)
                         // setError(false)
                     }}
@@ -94,20 +119,13 @@ function UseState({ name }) {
          <p>Necesito confirmacion, seguro?</p>
          <button 
          onClick={() => {
-            setState({
-                ...state,
-                deleted: true,
-            });
+           onDelete();
          }}>
             Si, eliminalo
          </button>
          <button
           onClick={() => {
-            setState({
-                ...state,
-                value: '',
-                confirmed: false,
-            });
+            onReset();
          }}>
             No, me arrepienti
         </button>
@@ -119,12 +137,7 @@ function UseState({ name }) {
             <p>Elimiando perro</p>
             <button
             onClick={()=>{
-                setState({
-                    ...state,
-                    value: '',
-                    deleted: false,
-                    confirmed: false,
-                })
+                onReset();
             }}>
                 Reestablecer
             </button>
