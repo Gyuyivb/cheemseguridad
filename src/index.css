@@ -1,9 +1,14 @@
 body {
   margin: 10%;
+  display: flex;
+  justify-content: center;
+    align-items: center;
   font-family: "Single Day", serif;
+  background-color: #69247C;
   /* font-family: "Princess Sofia", serif; */
   font-weight: 400;
   font-style: normal;
+  color: #FAC67A;
 }
 
 code {

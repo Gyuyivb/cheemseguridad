@@ -1,0 +1,58 @@
+h2 {
+    font-family: "Single Day", serif;
+    font-size: 50px;
+}
+
+p {
+    font-family: "Princess Sofia";
+    font-size: 25px;
+}
+
+input {
+    padding: 12px 20px;
+    font-family: "Single Day", serif;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 2px solid #FAC67A;
+    outline: none;
+    background-color: rgba(249, 230, 207, 0.5);
+    color: #FAC67A;
+    transition: all 0.3s ease;
+    width: 300px;
+}
+
+input::placeholder {
+    color: #FAC67A;
+  }
+
+  input:focus {
+    border-color: #F9E6CF;
+    box-shadow: 0 0 15px rgba(249, 230, 207, 0.5);
+  }
+
+  input:focus::placeholder {
+    color: transparent;
+  }
+  button {
+    padding: 15px 30px;
+    font-family: "Single Day", serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #F9E6CF;
+    background-color: #DA498D;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(218, 73, 141, 0.5);
+}
+button:hover {
+    background-color: #C4D9FF;
+    color: #69247C;
+    transform: translateY(-3px);
+    box-shadow: 0 0 5px rgba(218, 73, 141, 0.5);
+}
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 5px rgba(218, 73, 141, 0.5);
+  }

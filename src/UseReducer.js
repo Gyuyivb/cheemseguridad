@@ -1,4 +1,5 @@
 import React from "react";
+import './styles.css';
 
 const SECURITY_CODE = 'paradigma';
 
@@ -59,7 +60,7 @@ function UseReducer({ name }) {
                 )}
                 {state.error && (
                     <p>
-                        Error: codigo incorrercto
+                        Error: codigo incorrecto
                     </p>
                 )}
                 <input 
@@ -101,7 +102,8 @@ function UseReducer({ name }) {
     }else{
         return(
             <React.Fragment>
-            <p>Elimiando perro</p>
+            <h2>ELIMINAR {name}</h2>
+            <p>Elimiando, perro</p>
             <button
             onClick={()=>{
                 dispatch({type: actionTypes.reset})
