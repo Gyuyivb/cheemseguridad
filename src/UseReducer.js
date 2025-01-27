@@ -48,72 +48,67 @@ function UseReducer({ name }) {
     }, [state.loading])
 
     if (!state.deleted && !state.confirmed) {
-        return (
+            return (
+                <React.Fragment>
+                    <h2>Delete with {name}</h2>
+                    <p>Write the security code</p>
+        
+                    {state.loading && (
+                        <p>
+                            Loaaading...
+                        </p>
+                    )}
+                    {state.error && (
+                        <p>
+                            Error: wrong code!!!!
+                        </p>
+                    )}
+                    <input 
+                        placeholder="codigo de seguridad"
+                        value={state.value}
+                        onChange={(event) => {
+                            onWrite(event.target.value);
+                        }}/>
+                    <button
+                        onClick={() => {
+                            onCheck();
+                        }}
+                            >Check</button>
+                </React.Fragment>
+            )
+        }else if (!!state.confirmed && !state.deleted) {
+           return(
             <React.Fragment>
-                <h2>ELIMINAR {name}</h2>
-                <p>Escribe el codiogo de seguridad</p>
-    
-                {state.loading && (
-                    <p>
-                        Cargando...
-                    </p>
-                )}
-                {state.error && (
-                    <p>
-                        Error: codigo incorrecto
-                    </p>
-                )}
-                <input 
-                    placeholder="codigo de seguridad"
-                    value={state.value}
-                    onChange={(event) => {
-                        dispatch({type: 'WRITE', payload: event.target.value})
-                        onWrite(event.target.value);
-                    }}/>
-                <button
-                    onClick={() => {
-                        dispatch({type: 'CHECK',})
-                        onCheck();
-                    }}
-                        >Comprobar</button>
-            </React.Fragment>
-        )
-    }else if (!!state.confirmed && !state.deleted) {
-       return(
-        <React.Fragment>
-         <h2>ELIMINAR {name}</h2>
-         <p>Necesito confirmacion, seguro?</p>
-         <button 
-         onClick={() => {
-           dispatch({type:actionTypes.delete})
-            onDelete();
-         }}>
-            Si, eliminalo
-         </button>
-         <button
-          onClick={() => {
-            dispatch({type: actionTypes.reset})
-            onReset();
-         }}>
-            No, me arrepienti
-        </button>
-        </React.Fragment>
-       ); 
-    }else{
-        return(
-            <React.Fragment>
-            <h2>ELIMINAR {name}</h2>
-            <p>Elimiando, perro</p>
-            <button
-            onClick={()=>{
-                dispatch({type: actionTypes.reset})
-                //onReset();
-            }}>
-                Reestablecer
+             <h2>Delete with {name}</h2>
+             <p>I need confirmation, are you sure you want to delete it?</p>
+             <button 
+             onClick={() => {
+               onDelete();
+             }}>
+                Oh yeah, delete it
+             </button>
+             <button
+              onClick={() => {
+                onReset();
+             }}>
+                No, pls I ragret
             </button>
             </React.Fragment>
-        )
-    }
+           ); 
+        }else{
+            return(
+                <React.Fragment>
+                <h2>Delete with {name}</h2>
+                <p>It's deleted, dog</p>
+                <button
+                onClick={()=>{
+                    onReset();
+                }}>
+                    Restore
+                </button>
+                </React.Fragment>
+            )
+        }
 
 }
 

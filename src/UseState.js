@@ -83,17 +83,17 @@ function UseState({ name }) {
     if (!state.deleted && !state.confirmed) {
         return (
             <React.Fragment>
-                <h2>ELIMINAR {name}</h2>
-                <p>Escribe el codiogo de seguridad</p>
+                <h2>Delete with {name}</h2>
+                <p>Write the security code</p>
     
                 {state.loading && (
                     <p>
-                        Cargando...
+                        Loaaading...
                     </p>
                 )}
                 {state.error && (
                     <p>
-                        Error: codigo incorrecto
+                        Error: wrong code!!!!
                     </p>
                 )}
                 <input 
@@ -110,38 +110,38 @@ function UseState({ name }) {
                         // setLoading(true)
                         // setError(false)
                     }}
-                        >Comprobar</button>
+                        >Check</button>
             </React.Fragment>
         )
     }else if (!!state.confirmed && !state.deleted) {
        return(
         <React.Fragment>
-         <h2>ELIMINAR {name}</h2>
-         <p>Necesito confirmacion, seguro?</p>
+         <h2>Delete with {name}</h2>
+         <p>I need confirmation, are you sure you want to delete it?</p>
          <button 
          onClick={() => {
            onDelete();
          }}>
-            Si, eliminalo
+            Oh yeah, delete it
          </button>
          <button
           onClick={() => {
             onReset();
          }}>
-            No, me arrepienti
+            No, pls I ragret
         </button>
         </React.Fragment>
        ); 
     }else{
         return(
             <React.Fragment>
-            <h2>ELIMINAR {name}</h2>
-            <p>Elimiando, perro</p>
+            <h2>Delete with {name}</h2>
+            <p>It's deleted, dog</p>
             <button
             onClick={()=>{
                 onReset();
             }}>
-                Reestablecer
+                Restore
             </button>
             </React.Fragment>
         )
